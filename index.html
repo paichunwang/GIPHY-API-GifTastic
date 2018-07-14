@@ -14,6 +14,7 @@
     <div>
         <input type="text" name="FirstName" value="Search..." id="sub" onfocus="this.value=''">
         <button id="searchfor">SEARCH</button>
+        <button id="addTen">Show Me More!</button>
         <div id="images"></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
@@ -25,7 +26,7 @@
             $('body').on('click', '.listButton', function () {
                 var x = $(this).val();
                 // console.log("What button was clicked: " + x) // checking what button was pressed
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=TKQuPboqEK6BDv72pXGsSi0KeDwa9R7M&limit=10";
+                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=TKQuPboqEK6BDv72pXGsSi0KeDwa9R7M&limit=20";
 
                 $.ajax({
                     url: queryURL,
@@ -60,15 +61,27 @@
                 createButton()
             });
 
+            $("#addTen").click(function () {
+                $("div").css("display", "")
+            });
+
             function callImage(response) {
                 $("#images").empty()
+                // console.log(response)
                 for (i = 0; i < response.data.length; i++) {
                     //console.log("Title of gif images: " + response.data[i].title) // check what title and image was used
                     var stills = response.data[i].images.downsized_still.url
                     var animated = response.data[i].images.downsized_medium.url
-                    console.log(stills)
-                    console.log(animated)
-                    $("#images").append(`<img src="${stills}" data-stop="${stills}" data-start="${animated}" data-state="true"><br>`) //downsized_medium for animated
+                    var info = response.data[i].title + " Rating:" + response.data[i].rating
+                    // console.log(stills)
+                    // console.log(animated)
+
+                    if (i < 10) {
+                        $("#images").append(`<div><img src="${stills}" data-stop="${stills}" data-start="${animated}" data-state="true"><figcaption>&nbsp&nbsp&nbsp&nbsp${info}</figcaption><br><br></div>`) //downsized_medium for animated
+                    } else {
+                        $("#images").append(`<div id="hidden" style="display: none"><img src="${stills}" data-stop="${stills}" data-start="${animated}" data-state="true"><figcaption>&nbsp&nbsp&nbsp&nbsp${info}</figcaption><br><br></div>`) //downsized_medium for animated
+                        console.log("hidden placed")
+                    }
                 }
             }
 
@@ -78,7 +91,7 @@
                     $("#button").append(`<button type="button" class="listButton" id="${topics[i]}" value="${topics[i]}">${topics[i]}</button>&nbsp&nbsp`);
                 }
             }
-            
+
             createButton()
 
         </script>
