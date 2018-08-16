@@ -21,12 +21,15 @@
             console.log("Document Load")
 
             var topics = ["superman", "batman", "wolverine", "deadpool", "wonder woman", "iron man", "spider-man", "thor", "aquaman", "daredevil"];
-            var stills; //variable holder for true/false for determining still gif or animat
+            var stills; //variable holder for true/false for determining still gif or animate.
+
+//* REPLACE ME IF API KEY STOP WORKING            
+            var APIKey = 'TKQuPboqEK6BDv72pXGsSi0KeDwa9R7M';
 
             $('body').on('click', '.listButton', function () {
                 var x = $(this).val();
                 // console.log("What button was clicked: " + x) // checking what button was pressed
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=TKQuPboqEK6BDv72pXGsSi0KeDwa9R7M&limit=20";
+                var queryURL = `https://api.giphy.com/v1/gifs/search?q=${x}&api_key=${APIKey}&limit=20`;
 
                 $.ajax({
                     url: queryURL,
@@ -62,7 +65,7 @@
             });
 
             $("#addTen").click(function () {
-                $("div").css("display", "")
+                $("div").css("display", "") //change div display to show the div that was already created but "hidden"
             });
 
             function callImage(response) {
