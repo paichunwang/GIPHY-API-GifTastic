@@ -30,7 +30,7 @@ Once cloned or downloaded using your preferred method in 'Getting Started', open
 
 **PLEASE NOTE TO REPLACE ONLY THE CODE WITHIN THE * ENCLOSURE**
 
-![GIPHY API Key Replacement](https://github.com/paichunwang/GIPHY-API-GifTasticGIPHY-API-GifTastic-API-Replacement-KEY-Location.png)
+![GIPHY API Key Replacement](https://github.com/paichunwang/GIPHY-API-GifTastic/blob/master/GIPHY-API-GifTastic-API-Replacement-KEY-Location.png)
 
 ## Testing Phase
 
